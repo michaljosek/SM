@@ -1,0 +1,202 @@
+﻿@model SM.Web.ViewModels.B07_zgloViewModels.B07_zgloEditViewModel
+
+<form asp-action="Edit" method="post">
+    <div>
+        <input type="submit" value="Zapisz" class="btn btn-success" />
+        <a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="" class="btn btn-default">Powrót</a>
+        <a href="#myModalDelete" class="btn btn-danger" data-toggle="modal" style="float: right;">Usuń zgłoszenie</a>
+    </div>
+    <h3><b>Moduł wprowadzania usterki:</b></h3>
+    @Html.HiddenFor(model => model.B07_ZgloDTO.B07_zgloId)
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.id_admin">Administracja</label>
+        <select asp-for="B07_ZgloDTO.id_admin" asp-items="@Model.Administracje" class="form-control">
+            <option></option>
+        </select>
+        @if (ViewData?.ModelState["B07_ZgloDTO.id_admin"]?.Errors?.Any() == true)
+        {
+            <span asp-validation-for="B07_ZgloDTO.id_admin" class="text-danger">Wybór administracji jest wymagany.</span>
+        }
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.numer_zglo">Numer zgłoszenia</label>
+        <input asp-for="B07_ZgloDTO.numer_zglo" class="form-control"  readonly/>
+        <span asp-validation-for="B07_ZgloDTO.numer_zglo"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.id_branz">Branża</label>
+        <select asp-for="B07_ZgloDTO.id_branz" asp-items="@Model.Branze" class="form-control">
+            <option></option>
+        </select>
+        <span asp-validation-for="B07_ZgloDTO.id_branz"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.data_zglos">Data zgłoszenia</label>
+        <input asp-for="B07_ZgloDTO.data_zglos" class="form-control" />
+        <span asp-validation-for="B07_ZgloDTO.data_zglos"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.nazwisko">Nazwisko zgłaszającego</label>
+        <input asp-for="B07_ZgloDTO.nazwisko" class="form-control" />
+        <span asp-validation-for="B07_ZgloDTO.nazwisko"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.id_adres">Adres</label> <br />
+        Aktualny adres: <i id="adres" class="text-muted"></i>
+        <input asp-for="B07_ZgloDTO.id_adres" class="form-control" id="id_adres" readonly/>
+        <span asp-validation-for="B07_ZgloDTO.id_adres"></span>
+        <a href="#myModal" class="btn btn-info btn-sm" data-toggle="modal" style="margin-top: 4px">Wybierz adres</a>
+        <br />
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.rodzaj_ust">Rodzaj usterki</label>
+        <input asp-for="B07_ZgloDTO.rodzaj_ust" class="form-control" />
+        <span asp-validation-for="B07_ZgloDTO.rodzaj_ust"></span>
+    </div>
+    <h3><b>Moduł inspektora:</b></h3>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.data_insp">Data akceptacji inspektora</label>
+        <input asp-for="B07_ZgloDTO.data_insp" class="form-control" />
+        <span asp-validation-for="B07_ZgloDTO.data_insp"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.wykonawca">Wykonawca</label>
+        <input asp-for="B07_ZgloDTO.wykonawca" class="form-control" />
+        <span asp-validation-for="B07_ZgloDTO.wykonawca"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.wykon_zewn">Wykonawca zewnętrzny</label>
+        <input asp-for="B07_ZgloDTO.wykon_zewn" class="form-control" />
+        <span asp-validation-for="B07_ZgloDTO.wykon_zewn"></span>
+    </div>
+    <h3><b>Moduł wprowadzania usterki:</b></h3>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.numer_zlec">Numer zlecenia</label>
+        <input asp-for="B07_ZgloDTO.numer_zlec" class="form-control" />
+        <span asp-validation-for="B07_ZgloDTO.numer_zlec"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.data_zlec">Data inspekcji</label>
+        <input asp-for="B07_ZgloDTO.data_zlec" class="form-control" />
+        <span asp-validation-for="B07_ZgloDTO.data_zlec"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.uwagi_zlec">Uwagi do zlecenia</label>
+        <input asp-for="B07_ZgloDTO.uwagi_zlec" class="form-control" />
+        <span asp-validation-for="B07_ZgloDTO.uwagi_zlec"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.nr_prac">Pracownik</label>
+        <select asp-for="B07_ZgloDTO.nr_prac" asp-items="@Model.Pracownicy" class="form-control">
+            <option></option>
+        </select>
+        <span asp-validation-for="B07_ZgloDTO.nr_prac"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.data_wykon">Data wykonania</label>
+        <input asp-for="B07_ZgloDTO.data_wykon" class="form-control" />
+        <span asp-validation-for="B07_ZgloDTO.data_wykon"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.opis_wykon">Opis wykonania</label>
+        <input asp-for="B07_ZgloDTO.opis_wykon" class="form-control" />
+        <span asp-validation-for="B07_ZgloDTO.opis_wykon"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.uwagi_wyko">Uwagi</label>
+        <input asp-for="B07_ZgloDTO.uwagi_wyko" class="form-control" />
+        <span asp-validation-for="B07_ZgloDTO.uwagi_wyko"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.uwagi1">Uwagi dodatkowe</label>
+        <input asp-for="B07_ZgloDTO.uwagi1" class="form-control" />
+        <span asp-validation-for="B07_ZgloDTO.uwagi1"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="B07_ZgloDTO.data_tere">Termin realizacji</label>
+        <input asp-for="B07_ZgloDTO.data_tere" class="form-control" />
+        <span asp-validation-for="B07_ZgloDTO.data_tere"></span>
+    </div>
+
+
+
+    <div>
+        <input type="submit" value="Zapisz" class="btn btn-success"/>
+        <a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="" class="btn btn-default">Powrót</a>
+        <a href="#myModalDelete" class="btn btn-danger" data-toggle="modal" style="float: right;">Usuń zgłoszenie</a>
+    </div>
+</form>
+
+
+
+<div class="bs-example">
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Wybór adresu</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.Partial("_AdresDropdownList")
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="reset()">Zamknij</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="zapisz" onclick="adresToModel()">Zapisz zadres</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bs-example">
+    <div id="myModalDelete" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Usuń zgłoszenie</h4>
+                </div>
+                <div class="modal-body">
+                    Czy na pewno chcesz usunąc zgłoszenie?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Nie</button>
+                    <button type="submit" class="btn btn-danger" data-dismiss="modal" onclick="deleteZgloszenie(@Model.B07_ZgloDTO.B07_zgloId)">Tak</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+
+
+
+<script type="text/javascript">
+
+    $(function () {
+        var adresString = document.getElementById("id_adres").value;
+        $.post('@Url.Action("FindAddressFromString")', { adres: adresString }, function (data) {
+                $('#adres').html(data);
+        });
+    });
+
+    function deleteZgloszenie(idPost) {
+        var postData = {
+            id: idPost
+        };
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Delete", "B07_zglo")',
+            data: postData,
+            dataType: 'json',
+            success: function (data) {
+                window.location.href = data.url;
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Failed to delete');
+            }
+        });
+    }
+</script>       
+
+ 

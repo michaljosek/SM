@@ -1,0 +1,91 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<table>
+    <tr>
+        <td><label for="budynki">Budynki: </label></td>
+        <td><select id="budynki"><option selected="selected"></option></select></td>
+
+    </tr>
+    <tr>
+        <td><label for="klatki">Klatki: </label></td>
+        <td><select id="klatki"><option selected="selected"></option></select></td>
+    </tr>
+    <tr>
+        <td><label for="lokale">Lokale: </label></td>
+        <td><select id="lokale"><option selected="selected"></option></select></td>
+    </tr>
+</table>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        //Dropdownlist budynków
+        $.getJSON('/B07_zglo/GetBudynki', null, function (data) {
+            $.each(data, function () {
+                $('#budynki').append('<option value=' +
+                    this.id_budy + '>' + this.ulica + " " + this.numery + '</option>');
+            });
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            alert('Błąd podczas ładowania budynków!');
+        });
+
+
+        //Dropdown klatek
+        $('#budynki').change(function () {
+            $('#klatki option').remove();
+            $('#lokale option').remove();
+            $.getJSON('/B07_zglo/GetKlatki', { budynekId: $('#budynki').val() }, function (data) {
+                $('#klatki').append('<option value=></option>');
+                $.each(data, function () {
+                    $('#klatki').append('<option value=' +
+                        this.id_klat + '>' + this.id_klat + '</option>');
+                });
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Błąd podczas ładowania klatek!');
+            });
+        });
+
+        //Dropdown lokali
+        $('#klatki').change(function () {
+            $('#lokale option').remove();
+            $.getJSON('/B07_zglo/GetLokale', { klatkaId: $('#klatki').val(), budynekId: $('#budynki').val() }, function (data) {
+                $('#lokale').append('<option value=></option>');
+                $.each(data, function () {
+                    $('#lokale').append('<option value=' +
+                        this.id_loka + '>' + this.id_loka + '</option>');
+                });
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Błąd podczas ładowania lokali!');
+                console.log($('#budynki').val());
+                console.log($('#klatki').val());
+            });
+        });
+    });
+
+    function reset() {
+        $('#klatki option').remove();
+        $('#lokale option').remove();
+        $('#budynki').prop('selectedIndex', 0);
+    }
+
+    function adresToModel() {
+        var adres;
+
+        $.post('@Url.Action("UtworzAdresString")', { budynekId: $('#budynki').val(), klatkaId: $('#klatki').val(), lokalId: $('#lokale').val() }, function (data) {
+            document.getElementById("id_adres").value = data;
+
+            $.post('@Url.Action("FindAddressFromString")', { adres: data }, function (data1) {
+                $('#adres').html(data1);
+            });
+        });
+        reset();
+    }
+
+</script> 
