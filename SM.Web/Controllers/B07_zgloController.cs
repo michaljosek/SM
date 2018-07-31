@@ -16,9 +16,9 @@ namespace SM.Web.Controllers
     public class B07_zgloController : Controller
     {
         private readonly IB07_zgloService _b07_zgloService;
-        private readonly IAdministracjeService _administracjeService;
+        private readonly IAdresService _administracjeService;
 
-        public B07_zgloController(IB07_zgloService b07_zgloService, IAdministracjeService administracjeService)
+        public B07_zgloController(IB07_zgloService b07_zgloService, IAdresService administracjeService)
         {
             _b07_zgloService = b07_zgloService;
             _administracjeService = administracjeService;

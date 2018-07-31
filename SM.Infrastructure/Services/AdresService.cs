@@ -9,12 +9,12 @@ using SM.Core.Domain;
 
 namespace SM.Infrastructure.Services
 {
-    public class AdministracjeService : IAdministracjeService
+    public class AdresService : IAdresService
     {
-        private readonly IAdministracjeRepository _repository;
+        private readonly IAdresRepository _repository;
         private readonly IMapper _mapper;
 
-        public AdministracjeService(IAdministracjeRepository repository, IMapper mapper)
+        public AdresService(IAdresRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

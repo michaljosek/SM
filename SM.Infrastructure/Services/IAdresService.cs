@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SM.Infrastructure.Services
 {
-    public interface IAdministracjeService : IService
+    public interface IAdresService : IService
     {
         Task<IEnumerable<AdrAdmDTO>> GetAllAdmAsync();
         Task<IEnumerable<AdrBudDTO>> GetAllBudAsync();

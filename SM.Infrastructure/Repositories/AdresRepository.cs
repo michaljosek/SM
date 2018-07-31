@@ -8,11 +8,11 @@ using SM.Core.Domain;
 
 namespace SM.Infrastructure.Repositories
 {
-    public class AdministracjeRepository : IAdministracjeRepository
+    public class AdresRepository : IAdresRepository
     {
         private readonly SMContext _context;
 
-        public AdministracjeRepository(SMContext context)
+        public AdresRepository(SMContext context)
         {
             _context = context;
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SM.Core.Repositories
 {
-    public interface IAdministracjeRepository : IRepository
+    public interface IAdresRepository : IRepository
     {
         Task<IEnumerable<AdrAdm>> GetAllAdmAsync();
         Task<IEnumerable<AdrBud>> GetAllBudAsync();
