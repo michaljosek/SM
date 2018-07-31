@@ -34,8 +34,7 @@ namespace SM.Infrastructure.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-        //    var userBuilder = modelBuilder.Entity<User>();
-        //    userBuilder.HasKey(x => x.id);
+            
         }
     }
 }

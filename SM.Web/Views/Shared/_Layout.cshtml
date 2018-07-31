@@ -39,37 +39,185 @@
 <!-- Main -->
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-1">
-            <!-- Left column -->
-            <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Panel</strong></a>
-            <hr>
-            <ul class="nav nav-pills nav-stacked">
-                <li class="nav-header"></li>
-                <li><a asp-controller="Home" asp-action="Index"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-                <li><a asp-controller="B07_zglo" asp-action="Index"><i class="glyphicon glyphicon-pencil"></i> Zgłoszenia</a></li>
-                <li><a asp-controller="Home" asp-action="Contact"><i class="glyphicon glyphicon-envelope"></i> Contact</a></li>
-                <li><a asp-controller="Home" asp-action="About"><i class="glyphicon glyphicon-list"></i> About</a></li>
-            </ul>
-
-            <ul class="nav nav-stacked">
-                <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu">Test <i class="glyphicon glyphicon-chevron-down"></i></a>
-                    <ul class="nav nav-stacked collapse in" id="userMenu">
-                        
-                        <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-
+        <div class="col-sm-2 col-md-2">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <span class="glyphicon glyphicon-folder-close">
+                                </span>Test
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <a asp-controller="Home" asp-action="Index"><i class="glyphicon glyphicon-home"></i> Home</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a asp-controller="B07_zglo" asp-action="Index"><i class="glyphicon glyphicon-pencil"></i> Zgłoszenia</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a asp-controller="Home" asp-action="Contact"><i class="glyphicon glyphicon-envelope"></i> Contact</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a asp-controller="Home" asp-action="About"><i class="glyphicon glyphicon-list"></i> About</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                <span class="glyphicon glyphicon-th">
+                                </span>Modules
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <a href="">Orders</a> <span class="label label-success">$ 320</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="">Invoices</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="">Shipments</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="">Tex</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                <span class="glyphicon glyphicon-user">
+                                </span>Account
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <a href="">Change Password</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="">Notifications</a> <span class="label label-info">5</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="">Import/Export</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-trash text-danger"></span><a href="" class="text-danger">
+                                            Delete Account
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                <span class="glyphicon glyphicon-file">
+                                </span>Reports
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <a asp-controller="Home" asp-action="Index"><i class="glyphicon glyphicon-home"></i> Home</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a asp-controller="B07_zglo" asp-action="Index"><i class="glyphicon glyphicon-pencil"></i> Zgłoszenia</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a asp-controller="Home" asp-action="Contact"><i class="glyphicon glyphicon-envelope"></i> Contact</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a asp-controller="Home" asp-action="About"><i class="glyphicon glyphicon-list"></i> About</a>
+                                    <span class="badge">42</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-usd"></span><a href="">Sales</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-user"></span><a href="">Customers</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-tasks"></span><a href="">Products</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-shopping-cart"></span><a href="">Shopping Cart</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="col-md-11">
-
-        @RenderBody()
-        
-        
+        <div class="col-sm-10 col-md-10">
+             @RenderBody()
         </div>
     </div>
-    
 </div>
 @*<footer class="text-center">SM - Zgłoszenia online</footer>*@
 <!-- /Main -->
