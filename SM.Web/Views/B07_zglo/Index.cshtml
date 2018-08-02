@@ -1,67 +1,98 @@
 ﻿@model SM.Infrastructure.Paging.PagedList<SM.Infrastructure.DTO.B07_zgloDTO>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+
+    var numer_zglo_arrow = Model.SortOrder == "numer_zglo" ? "glyphicon" : "";
+    var data_zglos_arrow = Model.SortOrder == "data_zglos" ? "glyphicon" : "";
+    var data_tere_arrow = Model.SortOrder == "data_tere" ? "glyphicon" : "";
+    var nazwisko_arrow = Model.SortOrder == "nazwisko" ? "glyphicon" : "";
+    var id_adres_arrow = Model.SortOrder == "id_adres" ? "glyphicon" : "";
+    var rodzaj_ust_arrow = Model.SortOrder == "rodzaj_ust" ? "glyphicon" : "";
+    var uwagi_wyko_arrow = Model.SortOrder == "uwagi_wyko" ? "glyphicon" : "";
+    var order = Model.OrderAsc ? "glyphicon-menu-up" : "glyphicon-menu-down";
+}
 
 <a asp-action="Create" asp-controller="B07_zglo" asp-route-pageIndex="" class="btn btn-success">Utwórz</a>
 
 <table class="table table-hover">
     <thead>
         <tr>
-            <th> Nr</th>
-            <th> Data </th>
-            <th> Nazwisko </th>
-            <th> Adres </th>
-            <th> Rodzaj zgłoszenia</th>
-            <th> Uwagi </th>
-            <th> Termin realizacji</th>
+            <th>
+                <span class="@numer_zglo_arrow @order"></span>
+                <a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="1" asp-route-sortOrder="numer_zglo" asp-route-orderAsc="@(!Model.OrderAsc)" class="text-primary">Nr</a>
+            </th>
+            <th>
+                <span class="@data_zglos_arrow @order"></span>
+                <a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="1" asp-route-sortOrder="data_zglos" asp-route-orderAsc="@(!Model.OrderAsc)" class="text-primary">Data zgłoszenia</a>
+            </th>
+            <th>
+                <span class="@nazwisko_arrow @order"></span>
+                <a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="1" asp-route-sortOrder="nazwisko" asp-route-orderAsc="@(!Model.OrderAsc)" class="text-primary">Nazwisko</a>
+            </th>
+            <th>
+                <span class="@id_adres_arrow @order"></span>
+                <a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="1" asp-route-sortOrder="id_adres" asp-route-orderAsc="@(!Model.OrderAsc)" class="text-primary">Adres</a>
+            </th>
+            <th>
+                <span class="@rodzaj_ust_arrow @order"></span>
+                <a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="1" asp-route-sortOrder="rodzaj_ust" asp-route-orderAsc="@(!Model.OrderAsc)" class="text-primary">Rodzaj zgłoszenia</a>
+            </th>
+            <th>
+                <span class="@uwagi_wyko_arrow @order"></span>
+                <a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="1" asp-route-sortOrder="uwagi_wyko" asp-route-orderAsc="@(!Model.OrderAsc)" class="text-primary">Uwagi</a>
+            </th>
+            <th>
+                <span class="@data_tere_arrow @order"></span>
+                <a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="1" asp-route-sortOrder="data_tere" asp-route-orderAsc="@(!Model.OrderAsc)" class="text-primary">Termin realizacji</a>
+            </th>
             <th> Edycja</th>
             <th> Szczegóły</th>
         </tr>
     </thead>
     <tbody>
-    @foreach (var B07_zglo in Model.ResultList)
-    {
-        <tr>
-            <td >
-                @B07_zglo.numer_zglo
-            </td>
-            <td>
-                @B07_zglo.data_zglos
-            </td>
-            <td>
-                @B07_zglo.nazwisko
-            </td>
-            <td>
-                @B07_zglo.id_adres
-            </td>
-            <td>
-                @B07_zglo.rodzaj_ust
-            </td>
-            <td>
-                @B07_zglo.uwagi_wyko
-            </td>
-            <td>
-                @B07_zglo.data_tere
-            </td>
-            <td>
-                <a asp-action="Edit" asp-controller="B07_zglo" asp-route-id="@(B07_zglo.B07_zgloId)" class="glyphicon glyphicon-edit"></a>
-            </td>
-            <td>
-                <a asp-action="Details" asp-controller="B07_zglo" asp-route-id="@(B07_zglo.B07_zgloId)" data-target="#myModal" class="glyphicon glyphicon-comment" data-toggle="modal" onclick="detailsZgloszenie(@(B07_zglo.B07_zgloId))"></a>
-            </td>
-        </tr>
-    }
+        @foreach (var B07_zglo in Model.ResultList)
+        {
+            <tr>
+                <td>
+                    @B07_zglo.numer_zglo
+                </td>
+                <td>
+                    @B07_zglo.data_zglos
+                </td>
+                <td>
+                    @B07_zglo.nazwisko
+                </td>
+                <td>
+                    @B07_zglo.id_adres
+                </td>
+                <td>
+                    @B07_zglo.rodzaj_ust
+                </td>
+                <td>
+                    @B07_zglo.uwagi_wyko
+                </td>
+                <td>
+                    @B07_zglo.data_tere
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="B07_zglo" asp-route-id="@(B07_zglo.B07_zgloId)" class="glyphicon glyphicon-edit"></a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-controller="B07_zglo" asp-route-id="@(B07_zglo.B07_zgloId)" data-target="#myModal" class="glyphicon glyphicon-comment" data-toggle="modal" onclick="detailsZgloszenie(@(B07_zglo.B07_zgloId))"></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
-
-@{
-    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-}
 @Model.PageIndex
-<a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="1" class="btn btn-default">Pierwsza</a>
-<a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="@(Model.PageIndex - 1)" class="btn btn-default @prevDisabled">Poprzednia</a>
-<a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="@(Model.PageIndex + 1)"   class="btn btn-default @nextDisabled">Następna</a>
-<a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="@(Model.TotalPages)" class="btn btn-default">Ostatnia</a>
+@Model.SortOrder
+@Model.OrderAsc
+<a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="1" asp-route-sortOrder="@Model.SortOrder" asp-route-orderAsc="@Model.OrderAsc" class="btn btn-default">Pierwsza</a>
+<a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="@(Model.PageIndex - 1)" asp-route-sortOrder="@Model.SortOrder" asp-route-orderAsc="@Model.OrderAsc" class="btn btn-default @prevDisabled">Poprzednia</a>
+<a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="@(Model.PageIndex + 1)" asp-route-sortOrder="@Model.SortOrder" asp-route-orderAsc="@Model.OrderAsc" class="btn btn-default @nextDisabled">Następna</a>
+<a asp-action="Index" asp-controller="B07_zglo" asp-route-pageIndex="@(Model.TotalPages)" asp-route-sortOrder="@Model.SortOrder" asp-route-orderAsc="@Model.OrderAsc" class="btn btn-default">Ostatnia</a>
 
 <!-- Modal Details -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -83,6 +114,6 @@
                 alert("failed to load details");
             }
         });
-       
+
     }
 </script>

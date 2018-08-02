@@ -7,14 +7,13 @@ namespace SM.Core.Paging
 {
     public interface IPagedList<T> : IList<T>
     {
-        //string SortBy { get;}
-        //bool IsSortAscending { get;}
-
         int PageSize { get; }
         int PageIndex { get; }
-        int TotalCount { get; set; }
-        int TotalPages { get; set; }
+        int TotalCount { get;  }
+        int TotalPages { get; }
         bool HasPreviousPage { get; }
         bool HasNextPage { get;  }
+        string SortOrder { get; }
+        bool OrderAsc { get; }
     }
 }

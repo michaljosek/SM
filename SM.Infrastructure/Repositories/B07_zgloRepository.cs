@@ -30,9 +30,70 @@ namespace SM.Infrastructure.Repositories
         public async Task<IEnumerable<B07_zglo>> GetAllZgloAsync()
             => await Task.FromResult(_context.B07_zglos);
 
-        public async Task<IEnumerable<B07_zglo>> GetPageAsync(int pageIndex = 1, int pageSize = 10)
+        public async Task<IEnumerable<B07_zglo>> GetPageAsync(string sortOrder = "numer_zglo", bool orderAsc = true, int pageIndex = 1, int pageSize = 10)
         {
-            var b07_zglo = await _context.B07_zglos.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            List<B07_zglo> b07_zglo;
+
+            if (orderAsc)
+            {
+                switch (sortOrder)
+                {
+                    case "numer_zglo":
+                        b07_zglo = await _context.B07_zglos.OrderBy(x => x.numer_zglo).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                    case "data_zglos":
+                        b07_zglo = await _context.B07_zglos.OrderBy(x => x.data_zglos).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                    case "nazwisko":
+                        b07_zglo = await _context.B07_zglos.OrderBy(x => x.nazwisko).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                    case "id_adres":
+                        b07_zglo = await _context.B07_zglos.OrderBy(x => x.id_adres).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                    case "rodzaj_ust":
+                        b07_zglo = await _context.B07_zglos.OrderBy(x => x.rodzaj_ust).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                    case "uwagi_wyko":
+                        b07_zglo = await _context.B07_zglos.OrderBy(x => x.uwagi_wyko).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                    case "data_tere":
+                        b07_zglo = await _context.B07_zglos.OrderBy(x => x.data_tere).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                    default:  //by id
+                        b07_zglo = await _context.B07_zglos.OrderBy(x => x.B07_zgloId).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                }
+            }
+            else
+            {
+                switch (sortOrder)
+                {
+                    case "numer_zglo":
+                        b07_zglo = await _context.B07_zglos.OrderByDescending(x => x.numer_zglo).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                    case "data_zglos":
+                        b07_zglo = await _context.B07_zglos.OrderByDescending(x => x.data_zglos).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                    case "nazwisko":
+                        b07_zglo = await _context.B07_zglos.OrderByDescending(x => x.nazwisko).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                    case "id_adres":
+                        b07_zglo = await _context.B07_zglos.OrderByDescending(x => x.id_adres).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                    case "rodzaj_ust":
+                        b07_zglo = await _context.B07_zglos.OrderByDescending(x => x.rodzaj_ust).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                    case "uwagi_wyko":
+                        b07_zglo = await _context.B07_zglos.OrderByDescending(x => x.uwagi_wyko).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                    case "data_tere":
+                        b07_zglo = await _context.B07_zglos.OrderByDescending(x => x.data_tere).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                    default:  //by id
+                        b07_zglo = await _context.B07_zglos.OrderByDescending(x => x.B07_zgloId).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+                        break;
+                }
+            }
 
             return b07_zglo;
         }

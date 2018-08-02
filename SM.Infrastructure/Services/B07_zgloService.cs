@@ -23,12 +23,12 @@ namespace SM.Infrastructure.Services
             _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
-        public async Task<PagedList<B07_zgloDTO>> BrowseAsync(int pageIndex, int pageSize)
+        public async Task<PagedList<B07_zgloDTO>> BrowseAsync(string sortOrder, bool orderAsc, int pageIndex, int pageSize)
         {
             var counter = await _repository.CountTotalAsync();
-            var b07_zgloDb = await _repository.GetPageAsync(pageIndex, pageSize);
+            var b07_zgloDb = await _repository.GetPageAsync(sortOrder, orderAsc, pageIndex, pageSize);
             var b07_zgloDTODb = _mapper.Map<IEnumerable<B07_zglo>, IEnumerable<B07_zgloDTO>>(b07_zgloDb);
-            var b07_zgloDTOPaged = new PagedList<B07_zgloDTO>(b07_zgloDTODb.ToList(), counter, pageIndex, pageSize);
+            var b07_zgloDTOPaged = new PagedList<B07_zgloDTO>(b07_zgloDTODb.ToList(), counter, sortOrder, orderAsc, pageIndex, pageSize);
 
             return b07_zgloDTOPaged;
         }

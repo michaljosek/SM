@@ -25,9 +25,9 @@ namespace SM.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(string sortOrder = "numer_zglo", bool orderAsc = true, int pageIndex = 1, int pageSize = 10)
         {
-            var b07_zgloList = await _b07_zgloService.BrowseAsync(pageIndex, pageSize);
+            var b07_zgloList = await _b07_zgloService.BrowseAsync(sortOrder, orderAsc, pageIndex, pageSize);
 
             return View(b07_zgloList);
         }

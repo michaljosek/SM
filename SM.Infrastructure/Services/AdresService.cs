@@ -6,6 +6,7 @@ using SM.Infrastructure.DTO;
 using SM.Core.Repositories;
 using AutoMapper;
 using SM.Core.Domain;
+using SM.Infrastructure.Paging;
 
 namespace SM.Infrastructure.Services
 {
@@ -152,5 +153,20 @@ namespace SM.Infrastructure.Services
 
             return wynik;
         }
+
+        public Task<PagedList<AdrAdmDTO>> BrowseAdmAsync(int pageIndex, int pageSize)
+        {
+            throw new NotImplementedException();
+        }
+
+        //public Task<PagedList<AdrAdmDTO>> BrowseAdmAsync(int pageIndex, int pageSize)
+        //{
+        //    var counter = await _repository.CountTotalAsync();
+        //    var b07_zgloDb = await _repository.GetPageAsync(pageIndex, pageSize);
+        //    var b07_zgloDTODb = _mapper.Map<IEnumerable<B07_zglo>, IEnumerable<B07_zgloDTO>>(b07_zgloDb);
+        //    var b07_zgloDTOPaged = new PagedList<B07_zgloDTO>(b07_zgloDTODb.ToList(), counter, pageIndex, pageSize);
+
+        //    return b07_zgloDTOPaged;
+        //}
     }
 }

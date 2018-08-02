@@ -11,7 +11,7 @@ namespace SM.Infrastructure.Services
 {
     public interface IB07_zgloService : IService
     {
-        Task<PagedList<B07_zgloDTO>> BrowseAsync(int pageIndex, int pageSize);
+        Task<PagedList<B07_zgloDTO>> BrowseAsync(string sortOrder, bool orderAsc, int pageIndex, int pageSize);
         Task<B07_zgloDTO> GetZgloAsync(int id);
 
         Task<int> AddAsync();

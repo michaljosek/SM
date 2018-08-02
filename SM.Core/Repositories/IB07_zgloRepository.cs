@@ -11,7 +11,7 @@ namespace SM.Core.Repositories
     {
         Task<int> CountTotalAsync();
         Task<IEnumerable<B07_zglo>> GetAllZgloAsync();
-        Task<IEnumerable<B07_zglo>> GetPageAsync(int pageIndex, int pageSize);
+        Task<IEnumerable<B07_zglo>> GetPageAsync(string sortOrder, bool orderAsc, int pageIndex, int pageSize);
         Task<B07_zglo> GetZgloAsync(int id);
 
         Task AddAsync(B07_zglo zgloszenie);

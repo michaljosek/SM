@@ -13,8 +13,10 @@ namespace SM.Infrastructure.Paging
 
         public int PageIndex { get; private set; }
         public int PageSize { get; private set; }
-        public int TotalCount { get; set; }
-        public int TotalPages { get; set; }
+        public int TotalCount { get; private set; }
+        public int TotalPages { get; private set; }
+        public string SortOrder { get; private set; }
+        public bool OrderAsc { get; private set; }
 
         public bool HasPreviousPage
         {
@@ -29,7 +31,7 @@ namespace SM.Infrastructure.Paging
         {
         }
 
-        public PagedList(List<T> items, int count, int pageIndex, int pageSize)
+        public PagedList(List<T> items, int count, string sortOrder, bool orderAsc, int pageIndex, int pageSize)
         {
             if (pageIndex <= 0)
             {
@@ -49,6 +51,8 @@ namespace SM.Infrastructure.Paging
             }
             ResultList = new List<T>();
             ResultList = items;
+            SortOrder = sortOrder;
+            OrderAsc = orderAsc;
         }
     }
 }
