@@ -4,115 +4,111 @@
     Layout = "";
 }
 
-<!-- Modal content-->
-<div class="modal-content">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Szczegóły zgłoszenia: @Model.numer_zglo </h4>
-        
-    </div>
-    <div class="modal-body">
-        <fieldset>
-            <h3><b>Moduł wprowadzania usterki:</b></h3>
-            <div class="display-field">
-                <b>Administracja</b>
-                <br />
-                
-            </div>
-            <div class="display-field">
-                <b>Numer zgłoszenia</b>
-                <br />
-                @Html.DisplayFor(model => model.numer_zglo)
-            </div>
-            <div class="display-field">
-                <b>Branża</b>
-                <br />
-                
-            </div>
-            <div class="display-field">
-                <b>Data zgłoszenia</b>
-                <br />
-                @Html.DisplayFor(model => model.data_zglos)
-            </div>
-            <div class="display-field">
-                <b>Nazwisko zgłaszającego</b>
-                <br />
-                @Html.DisplayFor(model => model.nazwisko)
-            </div>
-            <div class="display-field">
-                <b>Adres</b>
-                <br />
-                @Html.DisplayFor(model => model.id_adres)
-                <br />
-                
-            </div>
-            <div class="display-field">
-                <b>Rodzaj usterki</b>
-                <br />
-                @Html.DisplayFor(model => model.rodzaj_ust)
-            </div>
-            <h3><b>Moduł inspektora:</b></h3>
-            <div class="display-field">
-                <b>Inspektor</b>
-                <br />
-                
-            </div>
-            <div class="display-field">
-                <b>Data akceptacji inspektora</b>
-                <br />
-                @Html.DisplayFor(model => model.data_insp)
-            </div>
-            <div class="display-field">
-                <b>Wykonawca</b>
-                <br />
-                @Html.DisplayFor(model => model.wykonawca)
-            </div>
-            <div class="display-field">
-                <b>Wykonawca zewnętrzny</b>
-                <br />
-                @Html.DisplayFor(model => model.wykon_zewn)
-            </div>
-            <h3><b>Moduł wprowadzania usterki:</b></h3>
-            <div class="display-field">
-                <b>Numer zlecenia</b>
-                <br />
-                @Html.DisplayFor(model => model.numer_zlec)
-            </div>
-            <div class="display-field">
-                <b>Data zlecenia</b>
-                <br />
-                @Html.DisplayFor(model => model.data_zlec)
-            </div>
-            <div class="display-field">
-                <b>Pracownik</b>
-                <br />
-                
-            </div>
-            <div class="display-field">
-                <b>Opis wykonania</b>
-                <br />
-                @Html.DisplayFor(model => model.opis_wykon)
-            </div>
-            <div class="display-field">
-                <b>Uwagi</b>
-                <br />
-                @Html.DisplayFor(model => model.uwagi_wyko)
-            </div>
-            <div class="display-field">
-                <b>Uwagi dodatkowe</b>
-                <br />
-                @Html.DisplayFor(model => model.uwagi1)
-            </div>
-            <div class="display-field">
-                <b>Termin realizacji</b>
-                <br />
-                @Html.DisplayFor(model => model.data_tere)
-            </div>
+<style>
+    .detailsWrap {
+        word-wrap: break-word;
+    }
+</style>
 
-        </fieldset>
-    </div>
-    <div class="modal-footer">
-        <a asp-action="Edit" asp-controller="B07_zglo" asp-route-id="@Model.B07_zgloId" class="btn btn-info">Edycja</a>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+<!-- Modal content-->
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Szczegóły zgłoszenia: @Model.numer_zglo </h4>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="col-md-12 detailsWrap">
+
+                    <h3><b>Moduł wprowadzania usterki:</b></h3>
+
+                    <b>Administracja</b>
+                    <br />
+                    <!--poprawic zeby nie bylo id a string-->
+                    @Html.DisplayFor(model => model.id_admin)
+                    <br />
+                    <b>Numer zgłoszenia</b>
+                    <br />
+                    @Html.DisplayFor(model => model.numer_zglo)
+                    <br />
+                    <b>Branża</b>
+                    <br />
+                    <!--poprawic zeby nie bylo id a string-->
+                    @Html.DisplayFor(model => model.id_branz)
+                    <br />
+                    <b>Data zgłoszenia</b>
+                    <br />
+                    @Html.DisplayFor(model => model.data_zglos)
+                    <br />
+                    <b>Nazwisko zgłaszającego</b>
+                    <br />
+                    @Html.DisplayFor(model => model.nazwisko)
+                    <br />
+                    <b>Adres</b>
+                    <br />
+                    <!--poprawic zeby nie bylo id a string-->
+                    @Html.DisplayFor(model => model.id_adres)
+                    <br />
+                    <b>Rodzaj usterki</b>
+                    <br />
+                    @Html.DisplayFor(model => model.rodzaj_ust)
+
+                    <h3><b>Moduł inspektora:</b></h3>
+
+                    <b>Inspektor</b>
+                    <br />
+                    <!--poprawic zeby nie bylo id a string-->
+                    @Html.DisplayFor(model => model.inspektor)
+                    <br />
+                    <b>Data akceptacji inspektora</b>
+                    <br />
+                    @Html.DisplayFor(model => model.data_insp)
+                    <br />
+                    <b>Wykonawca</b>
+                    <br />
+                    @Html.DisplayFor(model => model.wykonawca)
+                    <br />
+                    <b>Wykonawca zewnętrzny</b>
+                    <br />
+                    @Html.DisplayFor(model => model.wykon_zewn)
+
+                    <h3><b>Moduł wprowadzania usterki:</b></h3>
+
+                    <b>Numer zlecenia</b>
+                    <br />
+                    @Html.DisplayFor(model => model.numer_zlec)
+                    <br />
+                    <b>Data zlecenia</b>
+                    <br />
+                    @Html.DisplayFor(model => model.data_zlec)
+                    <br />
+                    <b>Pracownik</b>
+                    <br />
+                    <!--poprawic zeby nie bylo id a string-->
+                    @Html.DisplayFor(model => model.nr_prac)
+                    <br />
+                    <b>Opis wykonania</b>
+                    @Html.DisplayFor(model => model.opis_wykon)
+                    <br />
+                    <b>Uwagi</b>
+                    <br />
+                    @Html.DisplayFor(model => model.uwagi_wyko)
+                    <br />
+                    <b>Uwagi dodatkowe</b>
+                    <br />
+                    @Html.DisplayFor(model => model.uwagi1)
+                    <br />
+                    <b>Termin realizacji</b>
+                    <br />
+                    @Html.DisplayFor(model => model.data_tere)
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a asp-action="Edit" asp-controller="B07_zglo" asp-route-id="@Model.B07_zgloId" class="btn btn-info">Edycja</a>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+        </div>
     </div>
 </div>
